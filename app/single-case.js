@@ -71,14 +71,68 @@ document.getElementById('loginBtn3').onclick = function() {
 	*/
 var obj;
 if (!obj) {
-	obj = xxx;
+	obj = '';
 }
 /*
 	现在我们就把如何管理单例的逻辑从原来的代码中抽离出来
 */
 var getSingle = function(fn) {
-	var result;
-	return function() {
-		return result || (result = fn.apply(this, arguments))
+		var result;
+		return function() {
+			return result || (result = fn.apply(this, arguments))
+		}
 	}
+	/*
+		接下来将创建浮窗的方法用参数fn的形式传入getSingle
+	*/
+var createLoginLayer3 = function() {
+		var div = document.createElement('div');
+		div.innerHTML = '我是登录浮窗';
+		div.style.width = '100px';
+		div.style.height = '100px';
+		div.style.backgroundColor = 'green';
+		div.style.display = 'none';
+		document.body.appendChild(div);
+		return div;
+	}
+	//变量保存着获取单例变量的函数
+var createSingleLoginLayer = getSingle(createLoginLayer3);
+document.getElementById('loginBtn4').onclick = function() {
+		var loginLayer = createSingleLoginLayer();
+		loginLayer.style.display = 'block';
+	}
+	/*
+		这种单例模式的作用远不止创建对象，
+		比如我们通常渲染完页面中的一个列表之后，
+		接下来要给这个列表绑定click事件，如果是通过ajax动态往列表中追加数据，
+		在使用事件代理的前提下，click事件实际上只需要在第一次渲染列表的时候绑定一次，
+		但是我们不想去判断当前是否是第一次渲染列表，如果借助于jQuery，我们通常选择给节点绑定one事件
+	*/
+var bindEvent = function() {
+	// $('#loginBtn5').one('click', function(){
+	//     alert('click');
+	// });
+};
+var render = function() {
+		console.log('开始渲染列表');
+		bindEvent();
+	}
+	// render();
+	// render();
+	// render();
+	/*
+	 
+	 */
+var bindEvent = getSingle(function() {
+	document.getElementById('loginBtn5').onclick = function() {
+		alert('click');
+	}
+	return true;
+})
+var render = function() {
+	console.log('开始渲染列表');
+	bindEvent();
 }
+render();
+render();
+render();
