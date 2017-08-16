@@ -15,6 +15,6 @@ js设计模式
 
 模板模式：
 -
-  demo在`tmpl/command.html`中,详细讲解在[js模板模式](http://blog.csdn.net/sysuzhyupeng/article/details/70226944)中
+  demo在`tmpl/template.html`中,详细讲解在[js模板模式](http://blog.csdn.net/sysuzhyupeng/article/details/70226944)中
 
 
