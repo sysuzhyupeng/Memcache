@@ -11,5 +11,10 @@ js设计模式
 命令模式：
 -
   demo在`tmpl/command.html`中,详细讲解在[js命令模式](http://blog.csdn.net/sysuzhyupeng/article/details/70224146)中
+  
+
+模板模式：
+-
+  demo在`tmpl/command.html`中,详细讲解在[js模板模式](http://blog.csdn.net/sysuzhyupeng/article/details/70226944)中
 
 
