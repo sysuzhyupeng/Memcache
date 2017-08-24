@@ -26,6 +26,10 @@ js设计模式
 -
   demo在`tmpl/iterator.html`中
 
+装饰者模式：
+-
+  demo在`tmpl/decorator.html`中
+
 享元模式：
 -
   demo在`tmpl/flyweight.html`中
