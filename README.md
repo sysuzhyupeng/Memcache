@@ -24,6 +24,6 @@ js设计模式
 
 迭代器模式：
 -
-  demo在`tmpl/iteration.html`中
+  demo在`tmpl/iterator.html`中
 
 

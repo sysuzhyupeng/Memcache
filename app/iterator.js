@@ -80,5 +80,37 @@ var iterator1 = Iterator([1, 2, 3]),
 	iterator2 = Iterator([1, 2, 3]);
 compare2(iterator1, iterator2);
 /*
-	
+	迭代器模式不仅可以迭代数组，
+	还可以迭代一些类数组的对象，
+	比如jQuery中提供了each函数来封装各种迭代行为	
 */
+var $each = function(obj, callback){
+	var value,
+		i = 0,
+		len = obj.length,
+		isArray = obj instanceof Array;
+		if(isArray){
+			for(; i < len; i++){
+				//callback中有一个return值，如果false则结束迭代
+				value = callback.call(obj[i], i , obj[i]);
+				if(value === false){
+					break;
+				}
+			}
+		} else {
+			for(i in obj){
+				value = callback.call(obj[i], i , obj[i]);
+				if(value === false){
+					break;
+				}
+			}
+		}
+	return obj;
+}
+$each({ 
+	x: 1,
+	y: 2
+}, function(k, v){
+	v++;
+	console.log('$each', v);
+});
