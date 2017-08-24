@@ -21,6 +21,7 @@ js设计模式
 -
   demo在`tmpl/observer.html`中,详细讲解在[js观察者模式](http://blog.csdn.net/sysuzhyupeng/article/details/69043583)中
   
+
 迭代器模式：
 -
   demo在`tmpl/iteration.html`中
