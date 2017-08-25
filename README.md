@@ -30,6 +30,10 @@ js设计模式
 -
   demo在`tmpl/decorator.html`中
 
+状态模式：
+-
+  demo在`tmpl/state.html`中
+
 享元模式：
 -
   demo在`tmpl/flyweight.html`中
