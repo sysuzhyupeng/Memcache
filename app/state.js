@@ -14,7 +14,7 @@ Light1.prototype = {
 	init: function(){
 		var button = document.createElement('button'),
 			self = this;
-		button.innerHTML = '开关';
+		button.innerHTML = '开关1';
 		this.button = document.body.appendChild(button);
 		this.button.style.cursor = 'pointer';
 		this.button.onclick = function(){
@@ -40,7 +40,8 @@ light1.init();
 	第三次才是关闭，
 	那么代码就会变成这样
 */
-Light1.prototype.buttonWasPressed = function(){
+function Light(){}
+Light.prototype.buttonWasPressed = function(){
 	if(this.state === 'off'){
 		console.log('弱光');
 		this.state = 'weakLight';
@@ -60,6 +61,7 @@ Light1.prototype.buttonWasPressed = function(){
 	状态模式的关键是把事物的每种状态都封装成单独的类
 */
 var OffLightState = function(light){
+	//获取light对象，便于调用setState方法
 	this.light = light;
 }
 OffLightState.prototype.buttonWasPressed = function(){
@@ -86,26 +88,30 @@ var Light2 = function(){
 	this.strongLightState = new StrongLightState(this);
 	this.button = null;
 }
-Light1.prototype = {
+Light2.prototype = {
 	init: function(){
 		var button = document.createElement('button'),
 			self = this;
-		button.innerHTML = '开关';
+		button.innerHTML = '开关2';
 		this.button = document.body.appendChild(button);
 		this.button.style.cursor = 'pointer';
+
+		this.currState = this.offLightState;
+
+		//不同state调用的buttonWasPressed不同
 		this.button.onclick = function(){
-			self.buttonWasPressed();
+			self.currState.buttonWasPressed();
 		}
 	},
-	buttonWasPressed: function(){
-		if(this.state === 'off'){
-			console.log('开灯');
-			this.state = 'on';
-		} else {
-			console.log('关灯');
-			this.state = 'off';
-		}
+	//修改目前的state调用对象
+	setState: function(newState){
+		this.currState = newState;
 	}
 }
-var light = new Light1();
-light.init();
+var light2 = new Light2();
+light2.init();
+/*
+	状态模式的核心是委托，
+	无论增加多少状态类，它们都必须实现buttonWasPressed方法，
+	这个在Java中称为接口
+*/
